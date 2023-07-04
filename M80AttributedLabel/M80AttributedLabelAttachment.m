@@ -16,6 +16,10 @@ void deallocCallback(void* ref)
 CGFloat ascentCallback(void *ref)
 {
     M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
+        return 0;
+    }
+    
     CGFloat ascent = 0;
     CGFloat height = [image boxSize].height;
     switch (image.alignment)
@@ -43,6 +47,10 @@ CGFloat ascentCallback(void *ref)
 CGFloat descentCallback(void *ref)
 {
     M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
+        return 0;
+    }
+    
     CGFloat descent = 0;
     CGFloat height = [image boxSize].height;
     switch (image.alignment)
@@ -76,6 +84,10 @@ CGFloat descentCallback(void *ref)
 CGFloat widthCallback(void* ref)
 {
     M80AttributedLabelAttachment *image  = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
+        return 0;
+    }
+    
     return [image boxSize].width;
 }
 
