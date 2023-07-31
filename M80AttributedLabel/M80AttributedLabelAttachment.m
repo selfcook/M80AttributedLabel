@@ -15,11 +15,10 @@ void deallocCallback(void* ref)
 
 CGFloat ascentCallback(void *ref)
 {
-    id ob = (__bridge id)ref;
-    if (![ob isKindOfClass: [M80AttributedLabelAttachment class]]) {
+    M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
         return 0;
     }
-    M80AttributedLabelAttachment *image = (M80AttributedLabelAttachment *)ob;
     
     CGFloat ascent = 0;
     CGFloat height = [image boxSize].height;
@@ -47,11 +46,10 @@ CGFloat ascentCallback(void *ref)
 
 CGFloat descentCallback(void *ref)
 {
-    id ob = (__bridge id)ref;
-    if (![ob isKindOfClass: [M80AttributedLabelAttachment class]]) {
+    M80AttributedLabelAttachment *image = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
         return 0;
     }
-    M80AttributedLabelAttachment *image = (M80AttributedLabelAttachment *)ob;
     
     CGFloat descent = 0;
     CGFloat height = [image boxSize].height;
@@ -85,11 +83,10 @@ CGFloat descentCallback(void *ref)
 
 CGFloat widthCallback(void* ref)
 {
-    id ob = (__bridge id)ref;
-    if (![ob isKindOfClass: [M80AttributedLabelAttachment class]]) {
+    M80AttributedLabelAttachment *image  = (__bridge M80AttributedLabelAttachment *)ref;
+    if (![image isKindOfClass: [M80AttributedLabelAttachment class]]) {
         return 0;
     }
-    M80AttributedLabelAttachment *image = (M80AttributedLabelAttachment *)ob;
     
     return [image boxSize].width;
 }
