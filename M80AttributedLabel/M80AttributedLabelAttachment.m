@@ -10,7 +10,8 @@
 
 void deallocCallback(void* ref)
 {
-    
+    M80AttributedLabelAttachment *image = (__bridge_transfer M80AttributedLabelAttachment *)(ref);
+    image = nil; // release
 }
 
 CGFloat ascentCallback(void *ref)
@@ -167,4 +168,37 @@ CGFloat widthCallback(void* ref)
     }
     return size;
 }
+
+
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    typeof(self) one = [self.class new];
+    one.content = self.content;
+    one.margin = self.margin;
+    one.alignment = self.alignment;
+    one.fontAscent = self.fontAscent;
+    one.fontDescent = self.fontDescent;
+    one.maxSize = self.maxSize;
+    return one;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:_content forKey:@"content"];
+    [coder encodeUIEdgeInsets:_margin forKey:@"margin"];
+    [coder encodeObject:@(_alignment) forKey:@"alignment"];
+    [coder encodeObject:@(_fontAscent) forKey:@"fontAscent"];
+    [coder encodeObject:@(_fontDescent) forKey:@"fontDescent"];
+    [coder encodeCGSize:_maxSize forKey:@"maxSize"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    self = [super init];
+    _content = [coder decodeObjectForKey:@"content"];
+    _margin = [coder decodeUIEdgeInsetsForKey:@"_margin"];
+    _alignment = ((NSNumber *)[coder decodeObjectForKey:@"alignment"]).integerValue;
+    _fontAscent = ((NSNumber *)[coder decodeObjectForKey:@"fontAscent"]).floatValue;
+    _fontDescent = ((NSNumber *)[coder decodeObjectForKey:@"fontDescent"]).floatValue;
+    _maxSize = [coder decodeCGSizeForKey:@"maxSize"];
+    return self;
+}
+
 @end

@@ -501,7 +501,7 @@ static NSString* const M80EllipsesCharacter = @"\u2026";
     callbacks.getWidth      = widthCallback;
     callbacks.dealloc       = deallocCallback;
     
-    CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge void *)attachment);
+    CTRunDelegateRef delegate = CTRunDelegateCreate(&callbacks, (__bridge_retained void *)attachment.copy);
     NSDictionary *attr = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)delegate,kCTRunDelegateAttributeName, nil];
     [attachText setAttributes:attr range:NSMakeRange(0, 1)];
     CFRelease(delegate);

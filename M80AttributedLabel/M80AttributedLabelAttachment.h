@@ -15,7 +15,7 @@ CGFloat ascentCallback(void *ref);
 CGFloat descentCallback(void *ref);
 CGFloat widthCallback(void* ref);
 
-@interface M80AttributedLabelAttachment : NSObject
+@interface M80AttributedLabelAttachment : NSObject <NSCopying, NSCoding>
 @property (nonatomic,strong)    id                  content;
 @property (nonatomic,assign)    UIEdgeInsets        margin;
 @property (nonatomic,assign)    M80ImageAlignment   alignment;
